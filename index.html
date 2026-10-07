@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7eee8">
+  <meta name="description" content="Ucapan hari lahir penuh kasih buat Mama daripada Acap dan semua anak-anak.">
+  <title>Untuk Mama, Dengan Kasih</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7eee8;
+      --paper: #fffaf6;
+      --rose: #c87871;
+      --rose-dark: #984e4a;
+      --ink: #38342f;
+      --muted: #756c64;
+      --sage: #82917a;
+      --gold: #d5ad65;
+      --line: rgba(73, 57, 46, .14);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: var(--sans); }
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; }
+    ::selection { color: white; background: var(--rose); }
+
+    .progress { position: fixed; z-index: 20; inset: 0 auto auto 0; height: 3px; width: 0; background: var(--rose); }
+    .site-header { position: sticky; top: 0; z-index: 15; display: flex; align-items: center; justify-content: space-between; padding: 15px clamp(20px, 6vw, 90px); background: rgba(247, 238, 232, .92); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+    .brand-mark { display: grid; width: 31px; aspect-ratio: 1; place-items: center; border-radius: 50%; color: white; background: var(--rose); font-family: var(--serif); font-size: 19px; }
+    .nav { display: flex; align-items: center; gap: clamp(15px, 3vw, 39px); font-size: 12px; color: var(--muted); }
+    .nav a { transition: color .2s ease; }
+    .nav a:hover { color: var(--rose-dark); }
+    .nav .nav-cta { padding: 10px 16px; border: 1px solid var(--rose); border-radius: 999px; color: var(--rose-dark); }
+
+    .hero { position: relative; display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: clamp(35px, 8vw, 120px); max-width: 1320px; min-height: min(760px, calc(100svh - 62px)); margin: auto; padding: 74px clamp(24px, 8vw, 120px) 90px; overflow: hidden; }
+    .hero-copy { position: relative; z-index: 2; max-width: 580px; animation: rise-in .9s both; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; color: var(--rose-dark); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { width: 28px; height: 1px; content: ''; background: var(--rose); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 650px; margin: 21px 0 19px; font: 500 clamp(52px, 7.5vw, 100px)/.99 var(--serif); letter-spacing: 0; }
+    h1 em { color: var(--rose); font-weight: 500; }
+    .hero-copy > p { max-width: 420px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 31px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 47px; padding: 0 21px; border: 0; border-radius: 999px; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(120, 72, 64, .17); }
+    .button-primary { color: white; background: var(--rose); }
+    .button-text { padding-inline: 0; background: transparent; color: var(--muted); }
+    .button-text:hover { color: var(--rose-dark); box-shadow: none; }
+    .button svg { width: 17px; height: 17px; }
+
+    .portrait-wrap { position: relative; width: min(100%, 440px); justify-self: center; animation: photo-in 1s .12s both; }
+    .portrait-wrap::before { position: absolute; inset: 8% -8% -6% 8%; border: 1px solid rgba(200, 120, 113, .5); border-radius: 48% 48% 8px 8px; content: ''; transform: rotate(5deg); }
+    .portrait-frame { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border: 9px solid var(--paper); border-radius: 48% 48% 5px 5px; background: #ead7cc; box-shadow: 0 24px 55px rgba(95, 67, 52, .13); }
+    .portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 12px; color: var(--rose-dark); background: radial-gradient(ellipse at 40% 34%, #f6e4d8 0 17%, transparent 18%), linear-gradient(145deg, #ead8cb, #f4e9df 53%, #d6c8b4); text-align: center; }
+    .photo-placeholder[hidden] { display: none; }
+    .placeholder-flower { font-size: 58px; animation: sway 4s ease-in-out infinite; }
+    .photo-placeholder strong { font: 500 22px var(--serif); }
+    .photo-placeholder span { color: var(--muted); font-size: 11px; }
+    .photo-caption { position: absolute; right: -34px; bottom: 40px; display: flex; align-items: center; gap: 10px; padding: 13px 17px; border: 1px solid rgba(73, 57, 46, .1); background: var(--paper); box-shadow: 0 9px 28px rgba(73, 57, 46, .1); transform: rotate(-3deg); }
+    .caption-heart { color: var(--rose); font-size: 20px; }
+    .photo-caption span:last-child { font: italic 15px var(--serif); }
+    .floating-flower { position: absolute; color: rgba(200, 120, 113, .53); pointer-events: none; animation: float 8s ease-in-out infinite; }
+    .flower-one { top: 14%; left: 46%; font-size: 37px; }
+    .flower-two { right: 8%; top: 18%; font-size: 21px; animation-delay: -2s; }
+    .flower-three { left: 8%; bottom: 10%; font-size: 28px; animation-delay: -4s; }
+    .scroll-note { position: absolute; bottom: 22px; left: 50%; display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 10px; letter-spacing: .11em; text-transform: uppercase; transform: translateX(-50%); }
+    .scroll-note::before { width: 1px; height: 27px; content: ''; background: var(--rose); animation: scroll-line 1.8s ease-in-out infinite; }
+
+    .section { padding: 112px clamp(22px, 8vw, 120px); }
+    .section-inner { width: min(100%, 1120px); margin: auto; }
+    .section-heading { max-width: 650px; margin: 0 auto 51px; text-align: center; }
+    .section-heading .eyebrow { justify-content: center; }
+    h2 { margin: 16px 0 14px; font: 500 clamp(37px, 5vw, 60px)/1.12 var(--serif); }
+    .section-heading p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+
+    .wishes { background: var(--paper); }
+    .wish-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .wish { padding: 34px clamp(18px, 3vw, 38px); text-align: center; }
+    .wish + .wish { border-left: 1px solid var(--line); }
+    .wish-icon { display: grid; width: 54px; aspect-ratio: 1; place-items: center; margin: 0 auto 19px; border-radius: 50%; color: var(--rose-dark); background: #f5e6de; font-size: 23px; }
+    .wish h3 { margin-bottom: 10px; font: 500 22px var(--serif); }
+    .wish p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+    .dua { position: relative; overflow: hidden; background: #e9ede3; }
+    .dua::after { position: absolute; right: -75px; bottom: -110px; width: 330px; aspect-ratio: 1; border: 1px solid rgba(130, 145, 122, .35); border-radius: 50%; content: ''; box-shadow: 0 0 0 24px rgba(130, 145, 122, .06), 0 0 0 48px rgba(130, 145, 122, .05); }
+    .dua blockquote { position: relative; z-index: 1; max-width: 790px; margin: auto; text-align: center; }
+    .dua-mark { color: var(--sage); font: 72px/.7 var(--serif); }
+    .dua blockquote p { margin: 21px 0; font: italic 500 clamp(26px, 4vw, 43px)/1.5 var(--serif); }
+    .dua cite { color: #5e6a58; font-size: 11px; font-style: normal; letter-spacing: .16em; text-transform: uppercase; }
+
+    .letter { background: var(--cream); }
+    .letter-layout { display: grid; grid-template-columns: .7fr 1fr; align-items: center; gap: clamp(36px, 8vw, 110px); max-width: 900px; margin: auto; }
+    .letter-art { position: relative; display: grid; min-height: 290px; place-items: center; }
+    .letter-art::before { position: absolute; width: 240px; aspect-ratio: 1; border-radius: 50%; background: #eddbd1; content: ''; }
+    .envelope { position: relative; width: 206px; height: 143px; border: 0; background: transparent; cursor: pointer; filter: drop-shadow(0 15px 17px rgba(94, 67, 53, .17)); transition: transform .35s ease; }
+    .envelope:hover { transform: translateY(-7px) rotate(-2deg); }
+    .envelope-back { position: absolute; inset: 0; background: #c87871; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    .envelope-paper { position: absolute; top: 8px; left: 12px; width: 182px; height: 110px; background: #fffaf6; transition: transform .45s ease; }
+    .envelope:hover .envelope-paper { transform: translateY(-22px); }
+    .envelope-front { position: absolute; inset: 0; background: #d58c83; clip-path: polygon(0 100%, 50% 38%, 100% 100%); }
+    .envelope-flap { position: absolute; inset: 0; background: #b96560; clip-path: polygon(0 0, 100% 0, 50% 58%); transform-origin: top; transition: transform .35s ease; }
+    .envelope:hover .envelope-flap { transform: rotateX(180deg); }
+    .envelope-seal { position: absolute; top: 62px; left: 86px; z-index: 2; display: grid; width: 34px; aspect-ratio: 1; place-items: center; border-radius: 50%; color: white; background: var(--gold); font-size: 17px; }
+    .letter-copy .eyebrow { margin-bottom: 15px; }
+    .letter-copy h2 { font-size: clamp(37px, 5vw, 55px); }
+    .letter-copy p { color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .letter-copy .button { margin-top: 5px; }
+
+    .footer { padding: 36px 20px 28px; color: #fdf7f2; background: #4c4a40; text-align: center; }
+    .footer-heart { color: #e6a39b; font-size: 21px; }
+    .footer p { margin: 9px 0 0; font-size: 11px; opacity: .8; }
+    .footer strong { color: #f3c8b7; font-family: var(--serif); font-size: 17px; font-weight: 500; }
+
+    .modal { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(47, 39, 34, .56); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+    .modal.is-open { opacity: 1; visibility: visible; }
+    .letter-paper { position: relative; width: min(100%, 570px); max-height: 85svh; overflow: auto; padding: clamp(30px, 7vw, 62px); background: var(--paper); box-shadow: 0 30px 80px rgba(28, 22, 19, .25); transform: translateY(16px) scale(.98); transition: transform .3s ease; }
+    .modal.is-open .letter-paper { transform: translateY(0) scale(1); }
+    .close-modal { position: absolute; top: 15px; right: 15px; display: grid; width: 36px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: transparent; cursor: pointer; font-size: 18px; }
+    .letter-paper .eyebrow { margin-bottom: 20px; }
+    .letter-paper h2 { font-size: clamp(34px, 6vw, 49px); }
+    .letter-paper p { color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .letter-paper .signoff { margin-top: 25px; color: var(--rose-dark); font: italic 22px var(--serif); }
+    .heart-burst { position: fixed; z-index: 40; pointer-events: none; animation: heart-up 1.4s ease-out forwards; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    @keyframes photo-in { from { opacity: 0; transform: translateY(20px) rotate(2deg); } to { opacity: 1; transform: none; } }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-17px) rotate(13deg); } }
+    @keyframes sway { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+    @keyframes scroll-line { 0%, 100% { transform: scaleY(.55); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } }
+    @keyframes heart-up { 0% { opacity: 1; transform: translate(-50%, 0) scale(.7) rotate(-8deg); } 100% { opacity: 0; transform: translate(calc(-50% + var(--drift)), -120px) scale(1.3) rotate(14deg); } }
+
+    @media (max-width: 760px) {
+      .site-header { padding: 12px 18px; }
+      .brand { font-size: 11px; }
+      .nav { gap: 15px; font-size: 11px; }
+      .nav a:nth-child(2) { display: none; }
+      .nav .nav-cta { padding: 8px 12px; }
+      .hero { grid-template-columns: 1fr; gap: 38px; min-height: auto; padding: 69px 27px 83px; }
+      .hero-copy { max-width: 600px; }
+      h1 { font-size: clamp(54px, 14vw, 82px); }
+      .hero-copy > p { font-size: 14px; }
+      .portrait-wrap { width: min(78%, 340px); margin-right: 7%; }
+      .photo-caption { right: -28px; bottom: 27px; padding: 10px 13px; }
+      .flower-one { top: 36%; left: auto; right: 8%; }
+      .flower-two { top: 56%; right: 5%; }
+      .flower-three { left: 4%; bottom: 7%; }
+      .scroll-note { bottom: 19px; }
+      .section { padding: 79px 25px; }
+      .section-heading { margin-bottom: 34px; }
+      .wish-grid { grid-template-columns: 1fr; }
+      .wish { display: grid; grid-template-columns: 48px 1fr; column-gap: 15px; padding: 24px 4px; text-align: left; }
+      .wish + .wish { border-top: 1px solid var(--line); border-left: 0; }
+      .wish-icon { grid-row: span 2; width: 46px; margin: 0; }
+      .wish h3 { margin: 2px 0 5px; }
+      .wish p { font-size: 12px; }
+      .letter-layout { grid-template-columns: 1fr; gap: 20px; }
+      .letter-art { min-height: 230px; }
+      .letter-art::before { width: 200px; }
+      .letter-copy { text-align: center; }
+      .letter-copy .eyebrow { justify-content: center; }
+      .letter-copy > p { max-width: 440px; margin-inline: auto; }
+      .letter-copy h2 { margin-inline: auto; }
+    }
+
+    @media (max-width: 390px) {
+      .brand { gap: 7px; font-size: 10px; }
+      .nav { gap: 11px; font-size: 10px; }
+      .nav .nav-cta { padding: 8px 10px; }
+      .hero { padding-inline: 21px; }
+      .hero-actions { gap: 13px; }
+      .button { min-height: 44px; padding-inline: 16px; font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#atas" aria-label="Kembali ke atas"><span class="brand-mark">M</span><span>KHAS BUAT MAMA</span></a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="#ucapan">Ucapan</a>
+      <a href="#doa">Doa</a>
+      <a class="nav-cta" href="#surat">Surat untuk Mama <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="atas">
+      <span class="floating-flower flower-one" aria-hidden="true">✿</span>
+      <span class="floating-flower flower-two" aria-hidden="true">✳</span>
+      <span class="floating-flower flower-three" aria-hidden="true">❀</span>
+      <div class="hero-copy">
+        <div class="eyebrow">Hari istimewa insan tersayang</div>
+        <h1>Selamat hari lahir, <em>Mama.</em></h1>
+        <p>Untuk insan yang kasihnya tak pernah berkira, doanya sentiasa mengiringi, dan masakannya selalu dinanti-nanti.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#ucapan">Baca ucapan <span aria-hidden="true">↓</span></a>
+          <button class="button button-text heart-trigger" type="button"><span aria-hidden="true">♡</span> Kirim kasih</button>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <div class="portrait-frame">
+          <img src="gambar-mak.jpg" alt="Kenangan manis bersama Mama" onerror="this.hidden=true;document.querySelector('.photo-placeholder').hidden=false">
+          <div class="photo-placeholder" hidden>
+            <div class="placeholder-flower" aria-hidden="true">❀</div>
+            <strong>Ruang kenangan Mama</strong>
+            <span>Letakkan gambar pilihan awak di sini</span>
+          </div>
+        </div>
+        <div class="photo-caption"><span class="caption-heart" aria-hidden="true">♥</span><span>orang paling istimewa</span></div>
+      </div>
+      <a class="scroll-note" href="#ucapan">Teruskan membaca</a>
+    </section>
+
+    <section class="section wishes" id="ucapan">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Dari hati yang paling dalam</div>
+          <h2>Hari ini, semuanya tentang Mama</h2>
+          <p>Terima kasih untuk doa, kasih sayang, dan segala pengorbanan Mama untuk kami.</p>
+        </div>
+        <div class="wish-grid reveal">
+          <article class="wish">
+            <div class="wish-icon" aria-hidden="true">♡</div>
+            <h3>Doa Mama untuk Acap</h3>
+            <p>Terima kasih, Mama, sebab selalu doakan Acap lulus test masa Acap belajar dan selalu solat hajat supaya Acap pass semua exam. Doa Mama sangat bermakna buat Acap.</p>
+          </article>
+          <article class="wish">
+            <div class="wish-icon" aria-hidden="true">✿</div>
+            <h3>Tak pernah jemu menjaga</h3>
+            <p>Terima kasih sebab sentiasa caring dan ambil berat tentang Acap serta semua anak-anak Mama. Terima kasih juga sebab bangun awal pagi untuk masak untuk semua orang di rumah. Kami hargai setiap usaha Mama.</p>
+          </article>
+          <article class="wish">
+            <div class="wish-icon" aria-hidden="true">☼</div>
+            <h3>Kami sayang Mama</h3>
+            <p>Acap dan semua anak-anak Mama sayang Mama sangat-sangat. Semoga Mama sentiasa sihat, bahagia, dan dimurahkan rezeki.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dua" id="doa">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Doa paling tulus</div>
+          <h2>Untuk Mama, selalu</h2>
+        </div>
+        <blockquote>
+          <div class="dua-mark" aria-hidden="true">“</div>
+          <p>Semoga Allah panjangkan usia Mama dalam kesihatan dan keberkatan, murahkan rezeki, tenangkan hati, dan limpahkan bahagia di dunia serta akhirat.</p>
+          <cite>Amin ya Rabbal alamin</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section letter" id="surat">
+      <div class="letter-layout">
+        <div class="letter-art reveal">
+          <button class="envelope letter-trigger" type="button" aria-label="Buka surat untuk Mama">
+            <span class="envelope-back"></span><span class="envelope-paper"></span><span class="envelope-front"></span><span class="envelope-flap"></span><span class="envelope-seal" aria-hidden="true">♥</span>
+          </button>
+        </div>
+        <div class="letter-copy reveal">
+          <div class="eyebrow">Ada satu lagi</div>
+          <h2>Surat kecil, kasih yang besar</h2>
+          <p>Ada benda yang kadang-kadang susah nak disebut depan-depan. Jadi, bukalah surat ini. Semua yang tertulis datang terus dari hati Acap.</p>
+          <button class="button button-primary letter-trigger" type="button">Buka surat <span aria-hidden="true">♡</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-heart" aria-hidden="true">♥</div>
+    <strong>Selamat hari lahir, Mama tersayang.</strong>
+    <p>Dibuat dengan penuh kasih, khas oleh kami sekeluarga.</p>
+  </footer>
+
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="letter-title" aria-hidden="true">
+    <article class="letter-paper">
+      <button class="close-modal" type="button" aria-label="Tutup surat">×</button>
+      <div class="eyebrow">Untuk Mama, daripada Acap</div>
+      <h2 id="letter-title">Mama tersayang,</h2>
+      <p>Selamat hari lahir, Mama. Terima kasih sebab selalu doakan Acap lulus test masa Acap belajar. Acap tahu Mama selalu solat hajat supaya Acap dapat pass semua exam. Doa dan sokongan Mama sangat bermakna untuk Acap.</p>
+      <p>Terima kasih juga sebab sentiasa caring dan ambil berat tentang Acap serta semua anak-anak Mama. Terima kasih sebab selalu bangun awal pagi untuk masak bagi semua orang di rumah. Mama tak pernah jemu memasak untuk kita semua, dan Acap hargai setiap pengorbanan Mama.</p>
+      <p>Acap dan semua anak-anak Mama sayang Mama sangat-sangat. Semoga Mama sentiasa sihat, bahagia, dan dimurahkan rezeki. Selamat hari lahir, Mama!</p>
+      <div class="signoff">Dengan penuh kasih, Acap ♥</div>
+    </article>
+  </div>
+
+  <script>
+    const progress = document.querySelector('.progress');
+    const modal = document.querySelector('.modal');
+    const closeButton = document.querySelector('.close-modal');
+    let previousFocus;
+
+    function updateProgress() {
+      const available = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${available > 0 ? (window.scrollY / available) * 100 : 0}%`;
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+    function openLetter() {
+      previousFocus = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+      burstHearts(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    function closeLetter() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      previousFocus?.focus();
+    }
+
+    document.querySelectorAll('.letter-trigger').forEach((button) => button.addEventListener('click', openLetter));
+    closeButton.addEventListener('click', closeLetter);
+    modal.addEventListener('click', (event) => { if (event.target === modal) closeLetter(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeLetter(); });
+
+    function burstHearts(x, y) {
+      for (let index = 0; index < 13; index += 1) {
+        const heart = document.createElement('span');
+        heart.className = 'heart-burst';
+        heart.textContent = index % 3 === 0 ? '✿' : '♥';
+        heart.style.left = `${x + (Math.random() - .5) * 150}px`;
+        heart.style.top = `${y + (Math.random() - .5) * 55}px`;
+        heart.style.setProperty('--drift', `${(Math.random() - .5) * 100}px`);
+        heart.style.color = ['#c87871', '#d5ad65', '#82917a'][index % 3];
+        heart.style.fontSize = `${14 + Math.random() * 15}px`;
+        document.body.appendChild(heart);
+        window.setTimeout(() => heart.remove(), 1500);
+      }
+    }
+
+    document.querySelector('.heart-trigger').addEventListener('click', (event) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    });
+  </script>
+</body>
+</html>
